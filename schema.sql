@@ -1,0 +1,14 @@
+CREATE DATABASE IF NOT EXISTS bitspeed;
+USE bitspeed;
+
+CREATE TABLE IF NOT EXISTS Contact (
+  id             INT AUTO_INCREMENT PRIMARY KEY,
+  phoneNumber    VARCHAR(20)  DEFAULT NULL,
+  email          VARCHAR(255) DEFAULT NULL,
+  linkedId       INT          DEFAULT NULL,
+  linkPrecedence ENUM('primary', 'secondary') NOT NULL DEFAULT 'primary',
+  createdAt      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deletedAt      DATETIME     DEFAULT NULL,
+  FOREIGN KEY (linkedId) REFERENCES Contact(id) ON DELETE SET NULL
+);
